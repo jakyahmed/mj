@@ -1,0 +1,41 @@
+table {
+			border-collapse: collapse;
+			font-size: 10pt;
+		}
+th{
+	padding: 5px;
+	text-align: center;
+	border: thin solid;
+}
+		tr.border> td {
+			padding: 5px;
+			border: thin solid;
+			border-collapse: collapse;
+		}
+		
+		.noborder {
+			border-style: none;
+		}
+		
+		.borderluar {
+			border-right: solid thin;
+			border-top: solid thin;
+			border-left: solid thin;
+			border-bottom: solid thin;
+		}
+		
+		tr.left> td {
+			border-left: thin solid;
+		}
+		
+		tr.right> td {
+			border-right: thin solid;
+		}
+		
+		.top {
+			border-top: thin solid;
+		}
+		
+		.bottom {
+			border-bottom: thin solid;
+		}

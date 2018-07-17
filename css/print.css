@@ -1,0 +1,32 @@
+body{
+	background-color: darkgray;
+}
+.printarea {
+	width: 780px;
+	min-height: 1078px;
+	margin: auto;
+	background-color: white;
+	padding: 30px;
+}
+
+.printarealand{
+	width: 1078px;
+	min-height:   780px;
+	margin: auto;
+	background-color: white;
+	padding: 30px;
+}
+
+@media print{
+	body * {
+		visibility: hidden;
+	}
+	
+	.printarea * {
+		visibility: visible;
+	}
+	
+	.printarealand * {
+		visibility: visible;
+	}
+}
