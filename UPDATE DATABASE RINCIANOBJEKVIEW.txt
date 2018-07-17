@@ -1,0 +1,19 @@
+ SELECT rincianobjek.id_rincianobjek,
+    rincianobjek.kegiatan,
+    rincianobjek.anggaran,
+    rincianobjek.tahun,
+    rincianobjek.bulan,
+    rincianobjek.tanggal_rincianobjek,
+    rincianobjek.id_kegiatan,
+    rincianobjek_penerimaan.id_rincianobjek_penerimaan,
+    rincianobjek_penerimaan.tanggal AS tanggal_terima,
+    rincianobjek_penerimaan.uraian AS uraian_terima,
+    rincianobjek_penerimaan.jumlah AS jumlah_terima,
+    rincianobjek_pengeluaran.id_rincianobjek_pengeluaran,
+    rincianobjek_pengeluaran.tanggal AS tanggal_keluar,
+    rincianobjek_pengeluaran.uraian AS uraian_keluar,
+    rincianobjek_pengeluaran.jumlah AS jumlah_keluar
+   FROM kwitansi_dinas.rincianobjek
+     FULL JOIN kwitansi_dinas.rincianobjek_penerimaan ON rincianobjek.id_rincianobjek = rincianobjek_penerimaan.id_rincianobjek
+     FULL JOIN kwitansi_dinas.rincianobjek_pengeluaran ON rincianobjek.id_rincianobjek = rincianobjek_pengeluaran.id_rincianobjek
+  ORDER BY rincianobjek.id_rincianobjek;
