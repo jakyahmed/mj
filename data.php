@@ -70,10 +70,25 @@ $sql = "Select * from kwitansi_dinas.import where status='f' and concat(date_par
                 <div class="col-lg-6">
                     <fieldset>
                         <legend>Data Realisasi Bulan <strong><?php echo $namabulan[$bulan-1];?></strong></legend>
-                        <div style="overflow: scroll;height: 500px">
+                        <div style="overflow: scroll;height: 600px">
 
 
-                            <?php foreach ($dbpdo->query($sql) as $row) { ?>
+                            <?php 
+                            $kegiatan="";
+                        	$oldkeg="";
+                        	$divclosed=true;
+                            foreach ($dbpdo->query($sql) as $row) { 
+                            	$kegiatan=$row['kegiatan'];
+                            	$kondisi=($kegiatan != "" && $kegiatan!=$oldkeg);
+                            	if($kondisi){
+                            		if (!$divclosed){
+                            			echo "</div></div>";
+                            		}
+                            		echo "<div class=\"panel panel-primary\"><div class=\"panel-heading\"><h3 class='panel-title'>".$kegiatan."</h3></div><div class=\"panel-body\">";
+                            		$divclosed=false;
+                            }
+
+                            ?>
                             <p>
                                 <label>
                 <input type="checkbox" name="checkbox[]" value="<?php echo $row['id'];?>" id="<?php echo $row['id'];?>" onClick="checkboxclick(<?php echo $row['id'];?>)" autocomplete="off">
@@ -89,17 +104,18 @@ $sql = "Select * from kwitansi_dinas.import where status='f' and concat(date_par
                 <span class="label label-danger" id="keg_<?php echo $row['id'];?>" >
                     <?php echo $row['kegiatan'];?>
                 </span>&nbsp;
-                <span class="btn btn-primary btn-xs" onclick="split(<?php echo $row['id'];?>)">SPLIT</span>
+                <span class="btn btn-warning btn-xs" onclick="split(<?php echo $row['id'];?>)">SPLIT</span>
                 &nbsp;
                 <span class="glyphicon glyphicon-remove" onClick="removedata(<?php echo $row['id'];?>)"></span>
                  </label>
-                            
-
+                           
                                 <br>
 
                             </p>
 
-                            <?php } ?>
+                            <?php
+                            $oldkeg=$kegiatan;
+                             } ?>
 
                         </div>
 
